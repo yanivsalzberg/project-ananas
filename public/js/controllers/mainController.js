@@ -1,8 +1,8 @@
 app.controller('pineAppCtrl', ['$scope', function($scope) {
   $scope.pineboxes = [{color: "green"},
                       {color: "orange"},
-                      {color: "green"},
-                      {color: "orange"}];
+                      {color: "orange"},
+                      {color: "green"}];
 
   // $scope.clicked = false;
   //

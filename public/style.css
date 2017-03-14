@@ -1,11 +1,10 @@
 .boxes {
-  display: inline-block;
 }
 
 .box {
   background-color: Navy;
   height: 200px;
-  width: 100px;
+  width: 150px;
   border-radius: 10%;
   display: inline-block;
   margin: 10px;
