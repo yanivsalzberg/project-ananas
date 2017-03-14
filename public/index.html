@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
+  <body ng-controller = "pineAppCtrl">
 
     <div class="pinebox-container">
 
       <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class = "boxes" ng-repeat = "pinebox in pineboxes track by $index">
+              <div type = "button" class = "box" ng-style = "myStyle" ng-click = "myStyle={'background-color':'{{pinebox.color}}'}">
 
-        <div class="col-md-12 col-md-offset-4">
-          <div class="box col-md-6" id="one"></div>
-          <div class="box col-md-6" id="two"></div>
+              </div>
+          </div>
+
+          <!-- <div class="box col-md-6" id="one"></div>
+          <div class="box col-md-6" id="two"></div> -->
         </div>
       </div>
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12 col-md-offset-4">
             <div class="box col-md-6" id="three"></div>
             <div class="box col-md-6" id="four"></div>
           </div>
-      </div>
+      </div> -->
 
     </div>
 
