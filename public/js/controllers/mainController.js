@@ -1,8 +1,4 @@
-app.controller('pineAppCtrl', ['$scope', function($scope) {
-  $scope.pineboxes = [{color: "green"},
-                      {color: "orange"},
-                      {color: "orange"},
-                      {color: "green"}];
+app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
 
   // $scope.clicked = false;
   //
@@ -28,8 +24,9 @@ app.controller('pineAppCtrl', ['$scope', function($scope) {
   //   }
   // }
 
-  // pineAppService.getPineboxes().then(function(pineboxes) { // I got from the server's response beers (to be shown)
-  //   $scope.pineboxes = pineboxes;
-  //   $scope.numPairs = pineboxes.length/2;
-  // });
+  pineAppService.getPineboxes().then(function(pineboxes) {
+    $scope.pineboxes = pineboxes;
+    $scope.numPairs = pineboxes.length/2;
+    console.log("num of pairs is: " + $scope.numPairs);
+  });
 }]);

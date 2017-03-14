@@ -14,8 +14,8 @@
 
         <ul class="col-md-6 col-md-offset-3">
           <div class = "boxes row" ng-repeat = "pinebox in pineboxes track by $index" ng-if="$index % 2 == 0">
-              <li type = "button" class = "col-md-6 col-md-offset-3 box" ng-style = "myStyle" ng-click = "myStyle={'background-color':pineboxes[$index].color}"> <!-- {{pineboxes[$index].color}} --> </li>
-              <li type = "button" class = "col-md-6 col-md-offset-3 box" ng-style = "myStyle2" ng-click = "myStyle2={'background-color':pineboxes[$index + 1].color}"> <!-- {{pineboxes[$index + 1].color}} --> </li>
+              <li type = "button" class = "col-md-6 col-md-offset-6 box" ng-style = "myStyle" ng-click = "myStyle={'background-color':pineboxes[$index].color}"> <!-- {{pineboxes[$index].color}} --> </li>
+              <li type = "button" class = "col-md-6 col-md-offset-6 box" ng-style = "myStyle2" ng-click = "myStyle2={'background-color':pineboxes[$index + 1].color}"> <!-- {{pineboxes[$index + 1].color}} --> </li>
           </div>
 
           <!-- <div class="box col-md-6" id="one"></div>
@@ -33,6 +33,7 @@
     </div>
 
     <script src="/js/app.js"></script>
+    <script src="/js/services/pineAppFactory.js"></script>    
     <script src="/js/controllers/mainController.js"></script>
 
   </body>
