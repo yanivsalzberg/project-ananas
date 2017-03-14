@@ -1,34 +1,11 @@
+.boxes {
+}
+
 .box {
   background-color: Navy;
   height: 200px;
-  width: 12.5%;
+  width: 150px;
   border-radius: 10%;
-  display: block;
+  display: inline-block;
   margin: 10px;
-
-
-}
-
-#one:hover {
-
-  background-color: Red
-
-}
-
-#two:hover {
-
-  background-color: orange
-
-}
-
-#three:hover {
-
-  background-color: Yellow
-
-}
-
-#four:hover {
-
-  background-color: Green
-
 }
