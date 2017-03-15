@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body ng-controller = "pineAppCtrl">
+  <body ng-controller = "pineAppCtrl" background="assets/backgroundGreen.jpg">
 
     <div class="pinebox-container">
 
         <ul class="col-md-6 col-md-offset-3">
           <div  style="display:inline"  ng-repeat = "pinebox in pineboxes track by $index">
-              <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox)"> <!-- {{pineboxes[$index].color}} --> </li>
+              <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox)" ng-dblclick="dblplay(pinebox)"> <!-- {{pineboxes[$index].color}} -->  </li>
               <!-- <li type = "button" class = "col-md-6 col-md-offset-6 box" style="background-color: {{pineboxes[$index+1].display}}" ng-click = "play(pineboxes[$index+1])"> <!-- {{pineboxes[$index + 1].color}}  </li> -->
               <br  ng-if="$index % 2 == 1"/> <!--number of cols-->
           </div>
