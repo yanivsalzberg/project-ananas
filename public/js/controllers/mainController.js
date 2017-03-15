@@ -14,23 +14,24 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   }
   }//changeColor
   $scope.restoreDefaults = function(){
-    $scope.click = false;
+    $scope.clicked = false;
     //
   }//restore default setting-
-  $scope.play = function(pBox) {    
+  $scope.play = function(pBox) {
     if ($scope.clicked) {
       $scope.changeColor(pBox);
       //$scope.changeColorWithTimer(pBox.color)
-      if (pBox.color===$scope.selectedColor) {
-        //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
-        $scope.checkWin();
-      }//if same color
+      // if (pBox.color===$scope.selectedColor) {
+      //   //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
+      //   $scope.checkWin();
+      // }//if same color
       $scope.restoreDefaults();
     } else {
+    $scope.changeColor(pBox);
     $scope.clicked = true;
     $scope.selectedId = pBox.id;
     $scope.selectedColor = pBox.color;
-    $scope.changeColor(pBox);
+
 
     } //else click
   } //play
