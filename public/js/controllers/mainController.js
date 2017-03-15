@@ -6,7 +6,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   //   }//if
   // } //checkWin
   $scope.changeColor = function(pBox) {
-    if (pBox.display===pBox.color){
+    if ((pBox.display===pBox.color)&&(pBox._id!==$scope.selectedId)){
       pBox.display="navy";
     } else {
     pBox.display = pBox.color;
@@ -18,6 +18,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.selectedColor="";
     $scope.$apply();
   }//restore default setting-
+
   $scope.play = function(pBox) {
     if ($scope.clicked) {
       $scope.changeColor(pBox);
@@ -26,7 +27,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
       //   //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
       //   $scope.checkWin();
        }//if same color
-       else{
+       else {
          setTimeout(function(){$scope.restoreDefaults();},1000);
        }
       //setTimeout(function(){window.history.go(0);},1000);
@@ -37,6 +38,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.selectedColor = pBox.color;
     } //else click
   } //play
+
   $scope.defaultColorize = function(arr) {
     for (i = 0;i<arr.length;i++) {
       arr[i].display="navy";
