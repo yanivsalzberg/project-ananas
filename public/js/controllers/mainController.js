@@ -1,75 +1,47 @@
 app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
   $scope.clicked = false;
 
-  $scope.changeColor = function($index) {
-    console.log("here");
-    $scope.pineboxes[$index].clicked = !$scope.pineboxes[$index].clicked;
-  }
-
   $scope.checkWin = function()  {
     $scope.numPairs--;
     if ($scope.numPairs===0) {
       alert("you win the game");
     }//if
   } //checkWin
+  $scope.changeColor = function(pBox) {
+    if ($scope.clicked){
+      pBox.display="navy";
+    } else {
+    pBox.display = pBox.color;
+  }
+  }//changeColor
   $scope.restoreDefaults = function(){
     $scope.clicked = false;
     //
   }//restore default setting-
   $scope.play = function(pBox) {
     if ($scope.clicked) {
-      //$scope.changeColorWithTimer(pBox.color)
-      if (pBox.color===$scope.selectedColor) {
-        //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
-        $scope.checkWin();
-      } else {
-       $scope.restoreDefaults();
-      }// else not of the same color
-    } else {
-    $scope.clicked = true;
-    $scope.selectedId = pBox.id;
-    $scope.selectedColor = pBox.color;
-    // $scope.changeColor(pBox);
-    } //else click
-  } //play
-
-  //$scope.styles = {'background-color': getBackgroundColor()};
-
-  $scope.setStyle1 = function($index) {
-    console.log($index);
-      $scope.myStyle = {
-          'background-color': $scope.pineboxes[$index].color
-      };
-  }
-
-  $scope.setStyle2 = function($index) {
-    console.log($index);
-      $scope.myStyle2 = {
-          'background-color': $scope.pineboxes[$index + 1].color
-      };
-  }
-  //$scope.flipped = false;
-  //$scope.play = fucntion(pBox) {
-  //  if ($scope.clicked) {
+      $scope.changeColor(pBox); }
   //     //$scope.changeColorWithTimer(pBox.color)
-  //     if (pBox.color===selectedColor) {
-  //       //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
-  //       $scope.numPairs--;
-  //       if ($scope.numPairs===0) {
-  //         alert("you win the game");
-  //       }//if
-  //       //$scope.checkWin();
-  //     } else {
-  //       // restoreDefaults()
-  //     }// else not of the same color
-  //   }
-  //   else {
-  //     $scope.clicked = true;
-  //     $scope.selectedId = pBox.id;
-  //     $scope.selectedColor = pBox.color;
-  //     // $scope.changeColor(pBox);
-  //   }
-  // }
+  //     // if (pBox.color===$scope.selectedColor) {
+  //     //   //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
+  //     //   $scope.checkWin();
+  //     // }//if same color
+  //     $scope.restoreDefaults();
+  //   } else {
+  //   $scope.changeColor(pBox);
+  //   $scope.clicked = true;
+  //   $scope.selectedId = pBox.id;
+  //   $scope.selectedColor = pBox.color;
+  //
+  //
+  //   } //else click
+  // } //play
+  // $scope.arrange = function(arr) {
+  //   for (i = 0;i<arr.length;i++) {
+  //     arr[i].id = i;
+  //     arr[i].display="navy";
+  //   } //for i
+  }//arrange
 
   $scope.doubleArray = function(arr) {
     var res = [];
@@ -77,9 +49,11 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     for (var i = 0;i<arr.length;i++) {
       res[resIndex] = arr[i];
       res[resIndex].id = resIndex;
+      res[resIndex].display= "navy";
       resIndex++;
       res[resIndex] = arr[i];
       res[resIndex].id = resIndex;
+      res[resIndex].display= "navy";
       resIndex++;
     } //for i
     return res;

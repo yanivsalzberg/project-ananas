@@ -14,12 +14,10 @@
 
         <ul class="col-md-6 col-md-offset-3">
           <div class = "boxes row" ng-repeat = "pinebox in pineboxes track by $index" ng-show="$index % 2 == 0">
-            {{clicked == false}} {{pinebox.clicked}}
             <li type = "button" class = "col-md-6 col-md-offset-6 box" style = "background-color: {{pineboxes[$index].display}}" ng-click = "play(pinebox)"> <!-- {{pineboxes[$index].color}} --> </li>
             <li type = "button" class = "col-md-6 col-md-offset-6 box" style = "background-color: {{pineboxes[$index + 1].display}}" ng-click = "play(pineboxes[$index+1])"> <!-- {{pineboxes[$index + 1].color}} --> </li>
           </div>
         </ul>
-      </div>
 
     <script src="/js/app.js"></script>
     <script src="/js/services/pineAppFactory.js"></script>
