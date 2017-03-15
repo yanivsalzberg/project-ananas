@@ -12,7 +12,7 @@
         <ul class="col-md-6 col-md-offset-3">
           <div  style="display:inline" ng-repeat = "pinebox in pineboxes track by $index">
             <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)" ng-dblclick="dblplay(pinebox)">  </li>
-              <br  ng-if="$index % 2 == 1"/> <!--number of cols-->
+              <br  ng-if="$index % (numPairs/2) == (numPairs/2 - 1)"/> <!--number of cols-->
           </div>
         </ul>
     </div>
