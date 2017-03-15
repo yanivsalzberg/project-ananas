@@ -7,7 +7,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     }//if
   } //checkWin
   $scope.changeColor = function(pBox) {
-    if ($scope.clicked){
+    if (pBox.display===pBox.color){
       pBox.display="navy";
     } else {
     pBox.display = pBox.color;
