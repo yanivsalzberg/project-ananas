@@ -9,8 +9,8 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     if (pBox.display===pBox.color){
       pBox.display="navy";
     } else {
-    pBox.display = pBox.color;
-  }
+      pBox.display = pBox.color;
+    }
   }//changeColor
   $scope.restoreDefaults = function(){
     $scope.defaultColorize($scope.pineboxes);
@@ -18,13 +18,15 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.selectedColor="";
     $scope.$apply();
   }//restore default setting-
-  $scope.play = function(pBox) {
+  $scope.play = function(pBox, index) {
     if ($scope.clicked) {
       $scope.changeColor(pBox);
        if (pBox.color===$scope.selectedColor) {
          console.log("its a match!");
-      //   //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
-      //   $scope.checkWin();
+         $scope.clicked = false;
+         var disappearColor = document.getElementById("thebody").style.backgroundColor;
+         setTimeout(function(currentCardIndex){console.log(index);$scope.pineboxes[index].display=disappearColor;
+                  $scope.pineboxes[$scope.index].display = disappearColor; $scope.$apply(); },1000);
        }//if same color
        else{
          setTimeout(function(){$scope.restoreDefaults();},1000);
@@ -35,31 +37,16 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.clicked = true;
     $scope.selectedId = pBox._id;
     $scope.selectedColor = pBox.color;
+    $scope.index = index;
     } //else click
   } //play
   $scope.defaultColorize = function(arr) {
     for (i = 0;i<arr.length;i++) {
       arr[i].display="navy";
-    } //for i
+    }
     $scope.clicked = false;
-  }//defaultColorize
-
-
-  // $scope.doubleArray = function(arr) {
-  //   var res = [];
-  //   var resIndex = 0;
-  //   for (var i = 0;i<arr.length;i++) {
-  //     res[resIndex] = arr[i];
-  //     res[resIndex].id = resIndex;
-  //     res[resIndex].display= "navy";
-  //     resIndex++;
-  //     res[resIndex] = arr[i];
-  //     res[resIndex].id = resIndex;
-  //     res[resIndex].display= "navy";
-  //     resIndex++;
-  //   } //for i
-  //   return res;
-  // }// doubleArray  // OPTIONAL FEATURE
+  }
+  
   $scope.randomize = function(arr) {
     var randomArr = [];
     while (arr.length>0) {
@@ -69,8 +56,6 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     } //while
     return randomArr;
   }// randomize
-
-
   pineAppService.getPineboxes().then(function(pineboxes) {
     //$scope.pineboxes = $scope.doubleArray(pineboxes);
     $scope.pineboxes = $scope.randomize(pineboxes);
