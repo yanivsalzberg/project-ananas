@@ -6,7 +6,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   //   }//if
   // } //checkWin
   $scope.changeColor = function(pBox) {
-    if (pBox.display===pBox.color){
+    if ((pBox.display===pBox.color)&&(pBox._id!==$scope.selectedId)){
       pBox.display="navy";
     } else {
       pBox.display = pBox.color;
@@ -18,7 +18,19 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.selectedColor="";
     $scope.$apply();
   }//restore default setting-
+
+  $scope.dblplay = function(pBox) {
+
+    var sound = pBox.sound;
+    var audio = new Audio(sound);
+    audio.play();
+  }
+
+
+ 
+
   $scope.play = function(pBox, index) {
+
     if ($scope.clicked) {
       $scope.changeColor(pBox);
        if (pBox.color===$scope.selectedColor) {
