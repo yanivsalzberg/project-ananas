@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PineboxSchema = new Schema({
-  color: String
+  color: String,
+  selected: Boolean
  })
 
  var pinebox = mongoose.model("Pinebox", PineboxSchema);
