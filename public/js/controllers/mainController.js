@@ -1,9 +1,27 @@
 app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
 
-  // $scope.clicked = false;
-  //
-  // $scope.play = fucntion(pBox) {
-  //   if ($scope.clicked) {
+  //$scope.styles = {'background-color': getBackgroundColor()};
+
+  $scope.customStyle = {};
+  $scope.bColor1 = "red";
+  $scope.bColor2 = "pink";
+
+  $scope.setStyle1 = function($index) {
+    console.log($index);
+      $scope.myStyle = {
+          'background-color': $scope.pineboxes[$index].color
+      };
+  }
+
+  $scope.setStyle2 = function($index) {
+    console.log($index);
+      $scope.myStyle2 = {
+          'background-color': $scope.pineboxes[$index + 1].color
+      };
+  }
+  //$scope.flipped = false;
+  //$scope.play = fucntion(pBox) {
+  //  if ($scope.clicked) {
   //     //$scope.changeColorWithTimer(pBox.color)
   //     if (pBox.color===selectedColor) {
   //       //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
