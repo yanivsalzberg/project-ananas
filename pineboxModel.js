@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var PineboxSchema = new Schema({
   color: String,
-  sound: String
+  sound: String 
  })
 
  var pinebox = mongoose.model("Pinebox", PineboxSchema);
