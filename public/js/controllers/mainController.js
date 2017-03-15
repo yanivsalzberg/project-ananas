@@ -14,25 +14,29 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   }
   }//changeColor
   $scope.restoreDefaults = function(){
+    for (i = 0;i<$scope.pineboxes.length;i++) {
+      $scope.pineboxes[i].display="navy";
+    } //for i //hard reset
     $scope.clicked = false;
+    $scope.selectedId = "";
+    $scope.selectedColor="";
+    //restore both or all tile to original color and restore scope variables
     //
   }//restore default setting-
   $scope.play = function(pBox) {
     if ($scope.clicked) {
       $scope.changeColor(pBox);
-      //$scope.changeColorWithTimer(pBox.color)
-      // if (pBox.color===$scope.selectedColor) {
+       if (pBox.color===$scope.selectedColor) {
+         alert("Its a match!");
       //   //$scope.vanishBoxes(pBox.id, selectedId); make them disappear with ng-show/css
       //   $scope.checkWin();
-      // }//if same color
+       }//if same color
       $scope.restoreDefaults();
     } else {
     $scope.changeColor(pBox);
     $scope.clicked = true;
     $scope.selectedId = pBox.id;
     $scope.selectedColor = pBox.color;
-
-
     } //else click
   } //play
   $scope.arrange = function(arr) {
@@ -43,21 +47,21 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   }//arrange
 
 
-  $scope.doubleArray = function(arr) {
-    var res = [];
-    var resIndex = 0;
-    for (var i = 0;i<arr.length;i++) {
-      res[resIndex] = arr[i];
-      res[resIndex].id = resIndex;
-      res[resIndex].display= "navy";
-      resIndex++;
-      res[resIndex] = arr[i];
-      res[resIndex].id = resIndex;
-      res[resIndex].display= "navy";
-      resIndex++;
-    } //for i
-    return res;
-  }// doubleArray  // OPTIONAL FEATURE
+  // $scope.doubleArray = function(arr) {
+  //   var res = [];
+  //   var resIndex = 0;
+  //   for (var i = 0;i<arr.length;i++) {
+  //     res[resIndex] = arr[i];
+  //     res[resIndex].id = resIndex;
+  //     res[resIndex].display= "navy";
+  //     resIndex++;
+  //     res[resIndex] = arr[i];
+  //     res[resIndex].id = resIndex;
+  //     res[resIndex].display= "navy";
+  //     resIndex++;
+  //   } //for i
+  //   return res;
+  // }// doubleArray  // OPTIONAL FEATURE
   $scope.randomize = function(arr) {
     var randomArr = [];
     while (arr.length>0) {
