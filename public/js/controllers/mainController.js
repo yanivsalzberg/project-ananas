@@ -1,10 +1,14 @@
 app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
-  // $scope.checkWin = function()  {
-  //   $scope.numPairs--;
-  //   if ($scope.numPairs===0) {
-  //     alert("you win the game");
-  //   }//if
-  // } //checkWin
+
+  $scope.selectedIndexes = [];
+
+  $scope.checkWin = function()  {
+    $scope.numPairs--;
+    if ($scope.numPairs===0) {
+      alert("you win the game");
+    }//if
+  } //checkWin
+
   $scope.changeColor = function(pBox) {
     if ((pBox.display===pBox.color)&&(pBox._id!==$scope.selectedId)){
       pBox.display="navy";
@@ -13,6 +17,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     }
   }//changeColor
   $scope.restoreDefaults = function(){
+    $scope.clicked = false;
     $scope.defaultColorize($scope.pineboxes);
     $scope.selectedId = "";
     $scope.selectedColor="";
@@ -26,19 +31,22 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     audio.play();
   }
 
-
- 
-
   $scope.play = function(pBox, index) {
 
     if ($scope.clicked) {
       $scope.changeColor(pBox);
        if (pBox.color===$scope.selectedColor) {
-         console.log("its a match!");
-         $scope.clicked = false;
-         var disappearColor = document.getElementById("thebody").style.backgroundColor;
-         setTimeout(function(currentCardIndex){console.log(index);$scope.pineboxes[index].display=disappearColor;
-                  $scope.pineboxes[$scope.index].display = disappearColor; $scope.$apply(); },1000);
+         if (pBox._id!==$scope.selectedId){
+           console.log("its a match!");
+           $scope.checkWin();
+           $scope.clicked = false;
+           $scope.selectedIndexes.push(index);
+           $scope.selectedIndexes.push($scope.index);
+           console.log($scope.selectedIndexes);
+           var disappearColor = document.getElementById("thebody").style.backgroundColor;
+           setTimeout(function(currentCardIndex){console.log(index);$scope.pineboxes[index].display=disappearColor;
+                    $scope.pineboxes[$scope.index].display = disappearColor; $scope.$apply(); },1000);
+        }
        }//if same color
        else{
          setTimeout(function(){$scope.restoreDefaults();},1000);
@@ -53,12 +61,13 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     } //else click
   } //play
   $scope.defaultColorize = function(arr) {
-    for (i = 0;i<arr.length;i++) {
-      arr[i].display="navy";
+    for (var i = 0; i <arr.length; i++) {
+      if (!$scope.selectedIndexes.includes(i)) {
+          arr[i].display="navy";
+        }
     }
-    $scope.clicked = false;
   }
-  
+
   $scope.randomize = function(arr) {
     var randomArr = [];
     while (arr.length>0) {
