@@ -6,17 +6,21 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
     <script src="./angular/angular.js"></script>
     <link rel="stylesheet" href="style.css">
+
+    <!-- angular-animate -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    
   </head>
-  <body ng-controller = "pineAppCtrl" id = "thebody" style = "background-color: violet">r
+  <body ng-controller = "pineAppCtrl" id = "thebody" style = "background-color: black">r
     <div class="pinebox-container">
         <ul class="col-md-6 col-md-offset-3">
           <div  style="display:inline"  ng-repeat = "pinebox in pineboxes track by $index">
-              <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)" ng-dblclick="dblplay(pinebox)">  </li>
+              <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)" ng-dblclick="dblplay(pinebox)"> </li>
 
               <br  ng-if="$index % 2 == 1"/> <!--number of cols-->
-          </div>          
+          </div>
         </ul>
-      </div>   
+      </div>
     <script src="/js/app.js"></script>
     <script src="/js/services/pineAppFactory.js"></script>
     <script src="/js/controllers/mainController.js"></script>

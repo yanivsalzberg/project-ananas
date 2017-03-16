@@ -24,10 +24,13 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     var sound = pBox.sound;
     var audio = new Audio(sound);
     audio.play();
+
+    
+
   }
 
 
- 
+
 
   $scope.play = function(pBox, index) {
 
@@ -58,7 +61,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     }
     $scope.clicked = false;
   }
-  
+
   $scope.randomize = function(arr) {
     var randomArr = [];
     while (arr.length>0) {
