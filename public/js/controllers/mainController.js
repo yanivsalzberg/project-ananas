@@ -2,12 +2,22 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
 
   $scope.selectedIndexes = [];
 
-  $scope.errorSound = "assets/sounds/honk.mp3";
+  $scope.errorSound = ["assets/sounds/nope1.mp3", "assets/sounds/nope2.mp3", "assets/sounds/nope3.mp3",
+                      "assets/sounds/noway.mp3", "assets/sounds/honk.mp3", "assets/sounds/error1.mp3",
+                      "assets/sounds/error2.mp3","assets/sounds/error3.mp3","assets/sounds/error4.mp3",
+                      "assets/sounds/error5.mp3","assets/sounds/error6.mp3","assets/sounds/error7.mp3",
+                      "assets/sounds/error8.mp3","assets/sounds/error9.mp3","assets/sounds/error10.mp3",
+                      "assets/sounds/error11.mp3","assets/sounds/error12.mp3","assets/sounds/nope4.mp3"]
+
+  $scope.matchSound = "assets/sounds/cheer1.mp3"
+
+  $scope.winSound = "assets/sounds/ananasSing.mp3"
 
   $scope.checkWin = function()  {
     $scope.numPairs--;
     if ($scope.numPairs===0) {
       console.log("you win the game");
+      $scope.playWinAudio($scope.winSound);
       pineAppService.getPineboxes().then(function(pineboxes) {
         $scope.initGame(pineboxes);
       });
@@ -42,6 +52,18 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
 
   }
 
+  $scope.playMatchAudio = function(matchSoundPath) {
+    var audioMatch = new Audio(matchSoundPath);
+    audioMatch.play();
+
+  }
+
+  $scope.playWinAudio = function(winSoundPath) {
+    var audioWin = new Audio(winSoundPath);
+    audioWin.play();
+
+  }
+
   $scope.mute = function() {
     $scope.errorSound = "";
   }
@@ -54,7 +76,11 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
          if (pBox.color===$scope.selectedColor) {
            if (pBox._id!==$scope.selectedId){
              console.log("its a match!");
+
+             $scope.playMatchAudio($scope.matchSound);
+
              $scope.clicked = false;
+
              $scope.selectedIndexes.push(index);
              $scope.selectedIndexes.push($scope.index);
              console.log($scope.selectedIndexes);
@@ -70,7 +96,8 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
         }//if same color
         else {
 
-            $scope.playErrorAudio($scope.errorSound);
+            $scope.randomSoundNumber = Math.floor(Math.random() * 18)
+            $scope.playErrorAudio($scope.errorSound[$scope.randomSoundNumber]);
             setTimeout(function(){$scope.restoreDefaults();}, 1000);
         }
       }
