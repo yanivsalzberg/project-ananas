@@ -1,7 +1,5 @@
 app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
-  //document.getElementById("myModal").modal();
   $scope.selectedIndexes = [];
-
   $scope.errorSound = "assets/sounds/honk.mp3";
   $scope.isMuteOff = true;
 
@@ -9,6 +7,9 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.numPairs--;
     if ($scope.numPairs===0) {
       console.log("you win the game");
+      if ($scope.currentPlayer) {
+        pineAppService.playerWin($scope.currentPlayer);
+      }
       pineAppService.getPineboxes().then(function(pineboxes) {
         $scope.initGame(pineboxes);
       });
@@ -29,13 +30,14 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.selectedId = "";
     $scope.selectedColor="";
     $scope.$apply();
-  }//restore default settings
+  }//restore default setting-
 
   $scope.playAudio = function(pBox) {
     var sound = pBox.sound;
     var audio = new Audio(sound);
     audio.play();
   }
+
 
   $scope.playErrorAudio = function(errorSoundPath) {
     var audioError = new Audio(errorSoundPath);
@@ -52,6 +54,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.errorSound = "assets/sounds/honk.mp3";
     $scope.isMuteOff =!$scope.isMuteOff;
   }
+
 
   $scope.play = function(pBox, index) {
     if (!$scope.selectedIndexes.includes(index)) {
@@ -73,22 +76,23 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
           else {
             $scope.playAudio(pBox);
           }
-        }//if same color
+        }  ///// if inner
         else {
+          $scope.playErrorAudio($scope.errorSound);
+          setTimeout(function(){$scope.restoreDefaults();}, 1000);
+        }// else restore defaults
 
-            $scope.playErrorAudio($scope.errorSound);
-            setTimeout(function(){$scope.restoreDefaults();}, 1000);
-        }
-      }
+      }//if clicked
+
       else {
-        $scope.changeColor(pBox);
-        $scope.clicked = true;
-        $scope.selectedId = pBox._id;
-        $scope.selectedColor = pBox.color;
-        $scope.index = index;
-      } //else click
-    }
-  } //play
+      $scope.changeColor(pBox);
+      $scope.clicked = true;
+      $scope.selectedId = pBox._id;
+      $scope.selectedColor = pBox.color;
+      $scope.index = index;
+    } //else click
+  }//if indices
+}//play
 
   $scope.defaultColorize = function(arr) {
     for (var i = 0; i <arr.length; i++) {
@@ -106,7 +110,8 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     arr.splice(randomIndex, 1);
     }
     return randomArr;
-  }
+  }// randomize
+
 
   $scope.initGame = function(pineboxes) {
     $scope.selectedIndexes = [];
@@ -115,7 +120,32 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.numPairs = $scope.pineboxes.length/2;
   }
 
+
   pineAppService.getPineboxes().then(function(pineboxes) {
     $scope.initGame(pineboxes);
   });
+
+
+  $scope.getAllPlayers = function(){
+    pineAppService.getPlayers().then(function(response){
+      $scope.playerList = response;
+      $scope.playerList.sort(function(a,b) {
+        return b.score - a.score;
+      });
+    },function(err){
+      console.error(err);
+    })// err
+  }//getAllPlayers
+  $scope.getAllPlayers();
+
+  $scope.getPlayer = function() {
+    console.log($scope.playerName);
+    pineAppService.getPlayer($scope.playerName).then(function(response){ //response would be an array of found players
+      console.log("Welcome, "+ response[0].name+". you have "+ response[0].score+" points!");
+      $scope.currentPlayer = response[0];
+    },function(err){
+      console.error(err);
+    })
+  } // getPlayer
+
 }]);
