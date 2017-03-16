@@ -11,6 +11,13 @@ var pineAppService = {};
           console.error(err);
       });
   };
+  pineAppService.postPineapple = function(pBox) {
+    return $http.post('/pineboxes', pBox).then(function(response){
+      return response.data;
+    },function(err){
+      console.err(err);
+    })
+  };
 
   return pineAppService;
 });
