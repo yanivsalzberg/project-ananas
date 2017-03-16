@@ -32,7 +32,11 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     var sound = pBox.sound;
     var audio = new Audio(sound);
     audio.play();
+
+
+
   }
+
 
   $scope.play = function(pBox, index) {
     if (!$scope.selectedIndexes.includes(index)) {
