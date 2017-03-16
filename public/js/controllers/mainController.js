@@ -2,6 +2,9 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   //document.getElementById("myModal").modal();
   $scope.selectedIndexes = [];
 
+  $scope.errorSound = "assets/sounds/honk.mp3";
+  $scope.isMuteOff = true;
+
   $scope.checkWin = function()  {
     $scope.numPairs--;
     if ($scope.numPairs===0) {
@@ -34,6 +37,22 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     audio.play();
   }
 
+  $scope.playErrorAudio = function(errorSoundPath) {
+    var audioError = new Audio(errorSoundPath);
+    audioError.play();
+
+  }
+
+  $scope.mute = function() {
+    $scope.errorSound = "";
+    $scope.isMuteOff =!$scope.isMuteOff;
+  }
+
+  $scope.unmute = function() {
+    $scope.errorSound = "assets/sounds/honk.mp3";
+    $scope.isMuteOff =!$scope.isMuteOff;
+  }
+
   $scope.play = function(pBox, index) {
     if (!$scope.selectedIndexes.includes(index)) {
       if ($scope.clicked) {
@@ -56,7 +75,9 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
           }
         }//if same color
         else {
-          setTimeout(function(){$scope.restoreDefaults();}, 1000);
+
+            $scope.playErrorAudio($scope.errorSound);
+            setTimeout(function(){$scope.restoreDefaults();}, 1000);
         }
       }
       else {

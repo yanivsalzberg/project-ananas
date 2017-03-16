@@ -5,12 +5,16 @@
 .box {
   /*background-image: url(http://clockworkchilli.com/assets/demos/memory/images/back.png); */
   background-color: Navy;
-  height: 200px;
+  height: 150px;
   width: 150px;
   border-radius: 10%;
   display: inline-block;
   margin: 10px;
   transition: background-color 500ms ease;
+
+  border-radius: 10%;
+  border: 4px solid Snow;
+
 }
 
 #login-modal .modal-dialog {
