@@ -4,17 +4,54 @@
     <meta charset="utf-8">
     <title>Project Ananas</title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
-    <script src="./angular/angular.js"></script>
-    <link rel="stylesheet" href="style.css">
+       <script src="./jquery/dist/jquery.js"></script>
+       <script src="./bootstrap/js/modal.js"></script>
+       <script src="./angular/angular.js"></script>
+       <link rel="stylesheet" href="style.css">
 
-    <!-- angular-animate -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+       <!-- angular-animate -->
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 
   </head>
 
   <body ng-controller = "pineAppCtrl" id = "thebody" style = "background-color: SlateGray ">
+    <div class="modal fade" id="myModal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;
+        <i class="icon-warning-sign"></i></button>
+        <br> <br>
+        <h4 class="modal-title"> PineApp </h4>
+        <img class = "pineapple" ng-src = "http://freepngimages.com/wp-content/uploads/2015/08/pineapple.png" />
+      </div>
+          <div id="div-forms">
+          <!-- Begin # Login Form -->
+          <form id="login-form">
+            <div class="modal-body">
+              <h3 class ="modal-text-content"> Instructions: </h3>
+              <h4 class = "modal-instructions"> Just match all of the cards correctly <br /> without making too many mistakes </h4>
+            </div>
+            <div id="div-login-msg">
+              <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                <span id="text-login-msg">Select username</span>
+            </div>
+            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+              <div class="checkbox">
+              </div>
+            <div class="modal-footer">
+              <br />
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Play</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<script> $("#myModal").modal();</script>
     <br><br>
+
 
     <div class="pinebox-container">
         <ul class="col-md-6 col-md-offset-3">
