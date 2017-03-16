@@ -20,24 +20,34 @@ app.factory('pineAppService', function($http) {
           console.error(err);
       });
   };
+  pineAppService.PlayerWin = function(player) {
+    return $http.put('/players/'+name)
+      .then(function(response) {
+        console.log(response.data);
+        return response.data;
+      }, function(err) {
+          console.error(err);
+      });
+  };
 
 
-  // pineAppService.getPineboxes = function() {
-  //   return $http.get('/pineboxes')
-  //     .then(function(response) {
-  //       console.log(response.data);
-  //       return response.data;
-  //     }, function(err) {
-  //         console.error(err);
-  //     });
-  // };
-  // pineAppService.postPineapple = function(pBox) {
-  //   return $http.post('/pineboxes', pBox).then(function(response){
-  //     return response.data;
-  //   },function(err){
-  //     console.err(err);
-  //   })
-  // };
+
+  pineAppService.getPineboxes = function() {
+    return $http.get('/pineboxes')
+      .then(function(response) {
+        console.log(response.data);
+        return response.data;
+      }, function(err) {
+          console.error(err);
+      });
+  };
+  pineAppService.postPineapple = function(pBox) {
+    return $http.post('/pineboxes', pBox).then(function(response){
+      return response.data;
+    },function(err){
+      console.err(err);
+    })
+  };
 
   return pineAppService;
 });

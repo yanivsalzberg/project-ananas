@@ -6,6 +6,9 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.numPairs--;
     if ($scope.numPairs===0) {
       console.log("you win the game");
+      if ($scope.currentPlayer) {
+        pineAppService.playerWin($scope.currentPlayer);
+      }//if
       pineAppService.getPineboxes().then(function(pineboxes) {
         $scope.initGame(pineboxes);
       });
@@ -96,14 +99,27 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.numPairs = $scope.pineboxes.length/2;
   }
 
-  pineAppService.getPineboxes().then(function(pineboxes) {
-    $scope.initGame(pineboxes);
-  });
+  // pineAppService.getPineboxes().then(function(pineboxes) {
+  //   $scope.initGame(pineboxes);
+  // });
+
+  $scope.getAllPlayers = function(){
+    pineAppService.getPlayers().then(function(response){
+      $scope.playerList = response;
+      $scope.playerList.sort(function(a,b) {
+        return b.score - a.score;
+      });
+    },function(err){
+      console.error(err);
+    })// err
+  }//getAllPlayers
+  $scope.getAllPlayers();
 
   $scope.getPlayer = function() {
     console.log($scope.playerName);
     pineAppService.getPlayer($scope.playerName).then(function(response){ //response would be an array of found players
       console.log("Welcome, "+ response[0].name+". you have "+ response[0].score+" points!");
+      $scope.currentPlayer = response[0];
     },function(err){
       console.error(err);
     })

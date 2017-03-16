@@ -26,6 +26,15 @@
       </form>
 
     </div>
+    <div class="col-md-6 col-md-offset-3">
+      <h3 class= "col-md-6 col-md-offset-3">Highscore:</h3>
+      <ul class="col-md-6 col-md-offset-3">
+        <div ng-repeat="player in playerList track by $index">
+          <li>Player name: {{player.name}}   <p>Score: {{player.score}}</p></li>
+
+        </div>
+      </ul>
+    </div>
     <script src="/js/app.js"></script>
     <script src="/js/services/pineAppFactory.js"></script>
     <script src="/js/controllers/mainController.js"></script>

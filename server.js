@@ -50,71 +50,71 @@ app.delete("/players/:name",function(req,res){
       console.log(err);
       res.send("err");
     }  else {
-      //console.log(pinebox); testing
+      //console.log(player); testing
       res.send(player);
     }
 }); //findOneAndRemove
 }); //app.delete
  //////////////////////////////////////////deleting a new pineapple box //////////////////////////////////////////////////
 //   update a players score and number of games played. also check for achievement
-// app.put('/players/:name', function(req, res, next) {
-//   Pinebox.findOneAndUpdate({ name: req.params.id },  {$set:  {color: req.body.color}}, { new: true }, function(err, pinebox) {
-//     if (err) {
-//       console.error(err)
-//       return next(err);
-//     } else {
-//       //console.log(pinebox); testing
-//       res.send(pinebox);
-//     }
-//   });
-//});///////////////////////////////////////////////// edit a certain pineappleBox's
+app.put('/players/:name', function(req, res, next) {
+  Player.findOneAndUpdate({ name: req.params.name },  {$inc:  {score: 100, gamesWon: 1}}, { new: true }, function(err, player) {
+    if (err) {
+      console.error(err)
+      return next(err);
+    } else {
+      //console.log(player); testing
+      res.send(player);
+    }
+  });
+});///////////////////////////////////////////////// update a winning player
 
 //******************************************end of player paths ************************************************************************
 
 //****************************************** pineapple paths ***************************************************************************
-// app.get('/pineboxes', function (req, res, next) {
-//   Pinebox.find(function(error, result){
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       res.send(result);
-//     }//else
-//   })// find()
-// })///////////////////////////////////     getting all the pineapples ////////////////////////////////////////////////
-//
-// app.post('/pineboxes', function (req, res, next) {
-//   var p = new Pinebox(req.body);
-//   p.save(function(error, result){
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       res.send(result);
-//     }//else
-//   });//save
-// }); ///////////////////////////////////// saving a new pineapple box ////////////////////////////////////////////////////
-//
-// app.delete("/pineboxes/:id",function(req,res){
-//   Pinebox.findOneAndRemove({ _id: req.params.id }, function(err, pinebox) {     // might
-//     if (err) {
-//       console.log(err);
-//       res.send("err");
-//     }  else {
-//       //console.log(pinebox); testing
-//       res.send(pinebox);
-//     }
-// }); //findOneAndRemove
-// }); //////////////////////////////////////////deleting a new pineapple box //////////////////////////////////////////////////
-// app.put('/pineboxes/:id', function(req, res, next) {
-//   Pinebox.findOneAndUpdate({ _id: req.params.id },  {$set:  {color: req.body.color}}, { new: true }, function(err, pinebox) {
-//     if (err) {
-//       console.error(err)
-//       return next(err);
-//     } else {
-//       //console.log(pinebox); testing
-//       res.send(pinebox);
-//     }
-//   });
-// });///////////////////////////////////////////////// edit a certain pineappleBox's
+app.get('/pineboxes', function (req, res, next) {
+  Pinebox.find(function(error, result){
+    if (error) {
+      console.log(error);
+    } else {
+      res.send(result);
+    }//else
+  })// find()
+})///////////////////////////////////     getting all the pineapples ////////////////////////////////////////////////
+
+app.post('/pineboxes', function (req, res, next) {
+  var p = new Pinebox(req.body);
+  p.save(function(error, result){
+    if (error) {
+      console.log(error);
+    } else {
+      res.send(result);
+    }//else
+  });//save
+}); ///////////////////////////////////// saving a new pineapple box ////////////////////////////////////////////////////
+
+app.delete("/pineboxes/:id",function(req,res){
+  Pinebox.findOneAndRemove({ _id: req.params.id }, function(err, pinebox) {     // might
+    if (err) {
+      console.log(err);
+      res.send("err");
+    }  else {
+      //console.log(pinebox); testing
+      res.send(pinebox);
+    }
+}); //findOneAndRemove
+}); //////////////////////////////////////////deleting a new pineapple box //////////////////////////////////////////////////
+app.put('/pineboxes/:id', function(req, res, next) {
+  Pinebox.findOneAndUpdate({ _id: req.params.id },  {$set:  {color: req.body.color}}, { new: true }, function(err, pinebox) {
+    if (err) {
+      console.error(err)
+      return next(err);
+    } else {
+      //console.log(pinebox); testing
+      res.send(pinebox);
+    }
+  });
+});///////////////////////////////////////////////// edit a certain pineappleBox's
 //*******************************************************   pineapple paths *************************************************************
 app.listen(8000, function() {
   console.log("Pineapple! Listening on 8000.");
