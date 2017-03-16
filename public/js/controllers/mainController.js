@@ -1,5 +1,5 @@
 app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pineAppService) {
-
+  //document.getElementById("myModal").modal();
   $scope.selectedIndexes = [];
 
   $scope.checkWin = function()  {
