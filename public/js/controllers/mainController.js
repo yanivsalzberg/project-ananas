@@ -2,6 +2,8 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
 
   $scope.selectedIndexes = [];
 
+  $scope.errorSound = "assets/sounds/honk.mp3";
+
   $scope.checkWin = function()  {
     $scope.numPairs--;
     if ($scope.numPairs===0) {
@@ -32,9 +34,16 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     var sound = pBox.sound;
     var audio = new Audio(sound);
     audio.play();
+  }
 
+  $scope.playErrorAudio = function(errorSoundPath) {
+    var audioError = new Audio(errorSoundPath);
+    audioError.play();
 
+  }
 
+  $scope.mute = function() {
+    $scope.errorSound = "";
   }
 
 
@@ -60,7 +69,9 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
           }
         }//if same color
         else {
-          setTimeout(function(){$scope.restoreDefaults();}, 1000);
+
+            $scope.playErrorAudio($scope.errorSound);
+            setTimeout(function(){$scope.restoreDefaults();}, 1000);
         }
       }
       else {
