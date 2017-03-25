@@ -9,9 +9,17 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     "assets/sounds/error11.mp3", "assets/sounds/error12.mp3", "assets/sounds/nope4.mp3"
   ]
 
+  $scope.bckgrndclr = document.getElementById("thebody").style.backgroundColor;
   $scope.matchSound = "assets/sounds/cheer1.mp3"
-
   $scope.winSound = "assets/sounds/ananasSing.mp3"
+  $scope.isMuteOff = false;
+
+  // A class which gets applied (with ng-class) when two tiles are matched
+  $scope.getClass = function(color) {
+    if (color === $scope.bckgrndclr) {
+      return "matched";
+    }
+  }
 
   $scope.checkWin = function() {
     $scope.numPairs--;
@@ -94,11 +102,10 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
             $scope.selectedIndexes.push(index);
             $scope.selectedIndexes.push($scope.index);
             console.log($scope.selectedIndexes);
-            var disappearColor = document.getElementById("thebody").style.backgroundColor;
             setTimeout(function(currentCardIndex) {
               console.log(index);
-              $scope.pineboxes[index].display = disappearColor;
-              $scope.pineboxes[$scope.index].display = disappearColor;
+              $scope.pineboxes[index].display = $scope.bckgrndclr;
+              $scope.pineboxes[$scope.index].display = $scope.bckgrndclr;
               $scope.checkWin();
               $scope.$apply();
             }, 1000);
@@ -107,7 +114,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
           }
         } ///// if inner
         else {
-          $scope.randomSoundNumber = Math.floor(Math.random() * 18)
+          $scope.randomSoundNumber = Math.floor(Math.random() * 18);
           $scope.playErrorAudio($scope.errorSound[$scope.randomSoundNumber]);
           setTimeout(function() {
             $scope.restoreDefaults();
