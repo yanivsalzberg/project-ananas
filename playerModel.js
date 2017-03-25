@@ -6,7 +6,7 @@ var PlayerSchema = new Schema({
   gamesWon: Number,
   score: Number,
   achievementUnlocked: Boolean
- })
+})
 
- var player = mongoose.model("Player", PlayerSchema);
- module.exports = player;
+var player = mongoose.model("Player", PlayerSchema);
+module.exports = player;

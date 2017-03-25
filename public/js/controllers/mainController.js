@@ -3,6 +3,18 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   $scope.errorSound = "assets/sounds/honk.mp3";
   $scope.isMuteOff = true;
 
+  // $scope.errorSound = ["assets/sounds/nope1.mp3", "assets/sounds/nope2.mp3", "assets/sounds/nope3.mp3",
+  //                   "assets/sounds/noway.mp3", "assets/sounds/honk.mp3", "assets/sounds/error1.mp3",
+  //                   "assets/sounds/error2.mp3","assets/sounds/error3.mp3","assets/sounds/error4.mp3",
+  //                   "assets/sounds/error5.mp3","assets/sounds/error6.mp3","assets/sounds/error7.mp3",
+  //                   "assets/sounds/error8.mp3","assets/sounds/error9.mp3","assets/sounds/error10.mp3",
+  //                   "assets/sounds/error11.mp3","assets/sounds/error12.mp3","assets/sounds/nope4.mp3"]
+  $scope.matchSound = "assets/sounds/cheer1.mp3";
+  $scope.winSound = "assets/sounds/ananasSing.mp3";
+
+  var audio = new Audio($scope.errorSound);
+  audio.play();
+
   $scope.checkWin = function()  {
     $scope.numPairs--;
     if ($scope.numPairs===0) {
@@ -74,7 +86,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
                 $scope.$apply(); }, 1000);
           }
           else {
-            $scope.playAudio(pBox);
+            $scope.playAudio(pBox)
           }
         }  ///// if inner
         else {
@@ -136,7 +148,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
       console.error(err);
     })// err
   }//getAllPlayers
-  $scope.getAllPlayers();
+  //$scope.getAllPlayers();
 
   $scope.getPlayer = function() {
     console.log($scope.playerName);
