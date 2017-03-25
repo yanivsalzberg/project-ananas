@@ -4,18 +4,18 @@
     <meta charset="utf-8">
     <title>Project Ananas</title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+
     <script src="./jquery/dist/jquery.js"></script>
     <script src="./bootstrap/js/modal.js"></script>
     <script src="./angular/angular.js"></script>
     <link rel="stylesheet" href="style.css">
 
-    <!-- angular-animate -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+       <!-- angular-animate -->
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
 
   </head>
 
   <body ng-controller = "pineAppCtrl" id = "thebody" style = "background-color: SlateGray">
-
     <div class="modal fade" id="myModal" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -52,11 +52,15 @@
 
     <script> $("#myModal").modal();</script>
 
-    <div class="pinebox-container">
-        <ul class="col-md-6 col-md-offset-3">
-          <div  style="display:inline" ng-repeat = "pinebox in pineboxes track by $index">
-            <li type = "button"  class = "col-md-6 col-md-offset-6 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
-              <br  ng-if="$index % (numPairs/2) == (numPairs/2 - 1)"/> <!--number of cols-->
+    <div class = "pinebox-container row">
+        <ul class = "col-md-12 col-md-offset-3">
+          <div style="display:inline" ng-repeat = "pinebox in pineboxes track by $index">
+            <div class = "row" ng-show="$index % (initialNumPairs/2) == (initialNumPairs/2 - 1)">
+              <li type = "button" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
+            </div>
+            <div ng-show="$index % (initialNumPairs/2) != (initialNumPairs/2 - 1)">
+              <li type = "button" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
+            </div>
           </div>
         </ul>
     </div>
