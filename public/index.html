@@ -56,10 +56,10 @@
         <ul class = "col-md-12 col-md-offset-3">
           <div style="display:inline" ng-repeat = "pinebox in pineboxes track by $index">
             <div class = "row" ng-show="$index % (initialNumPairs/2) == (initialNumPairs/2 - 1)">
-              <li type = "button" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
+              <li type = "button" ng-class ="getClass(pinebox.display)" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
             </div>
             <div ng-show="$index % (initialNumPairs/2) != (initialNumPairs/2 - 1)">
-              <li type = "button" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
+              <li type = "button" ng-class ="getClass(pinebox.display)" class = "col-md-3 box" style="background-color: {{pinebox.display}}" ng-click = "play(pinebox, $index)">  </li>
             </div>
           </div>
         </ul>
