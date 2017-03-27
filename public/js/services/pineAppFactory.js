@@ -1,6 +1,5 @@
 app.factory('pineAppService', function($http) {
   var pineAppService = {};
-
   pineAppService.getPlayers = function() {
     return $http.get('/players')
       .then(function(response) {
