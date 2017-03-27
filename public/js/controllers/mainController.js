@@ -2,6 +2,8 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
 
   $scope.selectedIndexes = [];
 
+  $scope.clicked = false;
+
   $scope.errorSound = ["assets/sounds/nope1.mp3", "assets/sounds/nope2.mp3", "assets/sounds/nope3.mp3",
                       "assets/sounds/noway.mp3", "assets/sounds/honk.mp3", "assets/sounds/error1.mp3",
                       "assets/sounds/error2.mp3","assets/sounds/error3.mp3","assets/sounds/error4.mp3",
@@ -55,7 +57,6 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   $scope.playMatchAudio = function(matchSoundPath) {
     var audioMatch = new Audio(matchSoundPath);
     audioMatch.play();
-
   }
 
   $scope.playWinAudio = function(winSoundPath) {
