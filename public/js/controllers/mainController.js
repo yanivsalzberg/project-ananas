@@ -171,19 +171,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
   });
 
 
-<<<<<<< HEAD
 
-  $scope.getAllPlayers = function(){
-    pineAppService.getPlayers().then(function(response){
-      $scope.playerList = response;
-      $scope.playerList.sort(function(a,b) {
-        return b.score - a.score;
-      });
-    },function(err){
-      console.error(err);
-    })// err
-  }//getAllPlayers
-=======
   $scope.getAllPlayers = function() {
     pineAppService.getPlayers().then(function(response) {
       $scope.playerList = response;
@@ -194,22 +182,15 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
       console.error(err);
     }) // err
   } //getAllPlayers
->>>>>>> 2b2864b9b22b6f3a6314d84a2a89950eb4489825
   //$scope.getAllPlayers();
 
   $scope.getPlayer = function() {
     console.log($scope.playerName);
-<<<<<<< HEAD
-    pineAppService.getPlayer($scope.playerName).then(function(response){ //response would be an array of found players
-      console.log("Welcome, "+ response[0].name+". you have "+ response[0].score+" points!");
-      $scope.currentPlayer = response[0];
-    },function(err){
-=======
+
     pineAppService.getPlayer($scope.playerName).then(function(response) { //response would be an array of found players
       console.log("Welcome, " + response[0].name + ". you have " + response[0].score + " points!");
       $scope.currentPlayer = response[0];
     }, function(err) {
->>>>>>> 2b2864b9b22b6f3a6314d84a2a89950eb4489825
       console.error(err);
     })
   } // getPlayer
