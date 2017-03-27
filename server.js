@@ -77,6 +77,7 @@ app.get('/pineboxes', function (req, res, next) {
     if (error) {
       console.log(error);
     } else {
+      console.log("server is"+ result);
       res.send(result);
     }//else
   })// find()

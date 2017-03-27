@@ -2,6 +2,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.matched {
+  background: url(https://img.clipartfest.com/00441a4344214e3600924a16dc173a04_correct-clipart-1-correct-clipart_594-600.png);
+  background-size: 140px 140px;
+  background-repeat: no-repeat;
+}
+
 .box {
   /*background-image: url(http://clockworkchilli.com/assets/demos/memory/images/back.png); */
   background-color: Navy;
@@ -11,12 +17,7 @@
   display: inline-block;
   margin: 10px;
   transition: background-color 500ms ease;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-  border-radius: 10%;
   border: 4px solid Snow;
-
 }
 
 #login-modal .modal-dialog {

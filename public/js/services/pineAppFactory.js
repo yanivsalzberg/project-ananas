@@ -1,6 +1,5 @@
 app.factory('pineAppService', function($http) {
   var pineAppService = {};
-
   pineAppService.getPlayers = function() {
     return $http.get('/players')
       .then(function(response) {
@@ -29,8 +28,6 @@ app.factory('pineAppService', function($http) {
           console.error(err);
       });
   };
-
-
 
   pineAppService.getPineboxes = function() {
     return $http.get('/pineboxes')
