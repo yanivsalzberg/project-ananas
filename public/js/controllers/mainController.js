@@ -92,49 +92,57 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
     $scope.isMuteOff = !$scope.isMuteOff;
   }
 
-
   $scope.play = function(pBox, index) {
     if (!$scope.selectedIndexes.includes(index)) {// unbind click event from matched tiles.
       if ($scope.clicked) {
         $scope.changeColor(pBox);
          if (pBox.color===$scope.selectedColor) {
            if (pBox._id!==$scope.selectedId){
-             console.log("its a match!");
-             $scope.playMatchAudio($scope.matchSound);
-             $scope.clicked = false;
-             $scope.selectedIndexes.push(index);
-             $scope.selectedIndexes.push($scope.index);
-             console.log($scope.selectedIndexes);
-             var disappearColor = document.getElementById("thebody").style.backgroundColor;
-             setTimeout(function(currentCardIndex){console.log(index);$scope.pineboxes[index].display=disappearColor;// can be divided to function
-                $scope.pineboxes[$scope.index].display = disappearColor;
-                $scope.checkWin();
-                $scope.$apply(); }, 1000);
+             $scope.matchTileDisappear(index); // pushing tiles into disappearing array
+             $scope.matchViewChange(index); // changes view and checks win
           }
           else {
             $scope.playAudio(pBox);
-
           }
         } ///// if inner
         else {
-
-          $scope.randomSoundNumber = Math.floor(Math.random() * 18);
-          $scope.playErrorAudio($scope.errorSound[$scope.randomSoundNumber]);
-          setTimeout(function() {
-            $scope.restoreDefaults();
-          }, 1000);
+          $scope.tilesUnMatched();
         } // else restore defaults
-
       } //if clicked
       else {
-        $scope.changeColor(pBox);
-        $scope.clicked = true;
-        $scope.selectedId = pBox._id;
-        $scope.selectedColor = pBox.color;
-        $scope.index = index;
+        $scope.saveTileInfo(pBox, index); //saves tile info
       } //else click
     } //if indices
   } //play
+
+  $scope.tilesUnMatched = function() {
+    $scope.randomSoundNumber = Math.floor(Math.random() * 18);
+    $scope.playErrorAudio($scope.errorSound[$scope.randomSoundNumber]);
+    setTimeout(function() {
+      $scope.restoreDefaults();
+    }, 1000);
+  }
+  $scope.matchTileDisappear = function(index) {
+    console.log("its a match!");
+    $scope.playMatchAudio($scope.matchSound);
+    $scope.clicked = false;
+    $scope.selectedIndexes.push(index);
+    $scope.selectedIndexes.push($scope.index);
+  }
+  $scope.saveTileInfo = function(pBox, index) {
+    $scope.changeColor(pBox);
+    $scope.clicked = true;
+    $scope.selectedId = pBox._id;
+    $scope.selectedColor = pBox.color;
+    $scope.index = index;
+  }
+  $scope.matchViewChange = function(index) {
+  setTimeout(function(currentCardIndex){
+    $scope.pineboxes[index].display=$scope.bckgrndclr;
+     $scope.pineboxes[$scope.index].display = $scope.bckgrndclr;
+     $scope.checkWin();
+     $scope.$apply(); }, 1000);
+   }
 
   $scope.defaultColorize = function(arr) {
     for (var i = 0; i < arr.length; i++) {
