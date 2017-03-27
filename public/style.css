@@ -12,6 +12,7 @@
   margin: 10px;
   transition: background-color 500ms ease;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   border-radius: 10%;
   border: 4px solid Snow;
@@ -200,4 +201,6 @@
 .close {
     font-size: 50px;
     display:block;
+=======
+>>>>>>> 7520f766ce22b268c10cbdae75302d4deb7cd75b
 }
