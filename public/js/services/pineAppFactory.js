@@ -32,7 +32,7 @@ app.factory('pineAppService', function($http) {
   pineAppService.getPineboxes = function() {
     return $http.get('/pineboxes')
       .then(function(response) {
-        console.log(response.data);
+        console.log(response.data); // returns an entire html page for some reason
         return response.data;
       }, function(err) {
           console.error(err);

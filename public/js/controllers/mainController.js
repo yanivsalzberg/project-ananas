@@ -190,7 +190,7 @@ app.controller('pineAppCtrl', ['$scope', 'pineAppService', function($scope, pine
       console.error(err);
     }) // err
   } //getAllPlayers
-  //$scope.getAllPlayers();
+  $scope.getAllPlayers();
 
   $scope.getPlayer = function() {
     console.log($scope.playerName);
